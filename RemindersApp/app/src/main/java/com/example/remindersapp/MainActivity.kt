@@ -1,5 +1,6 @@
 package com.example.remindersapp
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -19,8 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            startAddActivity()
         }
 
         // add all data to reminders
@@ -37,6 +37,13 @@ class MainActivity : AppCompatActivity() {
         // scheid de lijntjes doormiddel van een verticale lijn
         rvReminder.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
+
+    private fun startAddActivity() {
+        val intent = Intent(this, addActivity::class.java)
+        startActivity(intent)
+    }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
