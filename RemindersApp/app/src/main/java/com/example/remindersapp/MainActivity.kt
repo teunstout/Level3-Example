@@ -1,5 +1,6 @@
 package com.example.remindersapp
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -40,8 +41,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startAddActivity() {
-        val intent = Intent(this, addActivity::class.java)
+        val intent = Intent(this, AddActivity::class.java)
         startActivityForResult(intent, ADD_REMINDER_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                ADD_REMINDER_REQUEST_CODE -> {
+                    // kan beter zonder !!
+                    val reminder = data!!.getParcelableExtra<Reminder>(EXTRA_REMINDER)
+                    reminders.add(reminder)
+                    reminderAdapter.notifyDataSetChanged()
+                }
+            }
+        }
     }
 
 
