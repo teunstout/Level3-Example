@@ -5,20 +5,37 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    var reminders = arrayListOf<Reminder>()
+    var reminderAdapter = ReminderAdapter(reminders)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+
+        // add all data to reminders
+        for (i in Reminder.STANDERTREMINDERS){
+            reminders.add(Reminder(i))
+        }
+
+        initViews()
+    }
+
+    private fun initViews() {
+        rvReminder.layoutManager = StaggeredGridLayoutManager(1, 1) // gebruik een staggerd grid
+        rvReminder.adapter = reminderAdapter // adapter recycle view is questionadapter
+        // scheid de lijntjes doormiddel van een verticale lijn
+        rvReminder.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
