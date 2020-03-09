@@ -2,7 +2,6 @@ package com.example.remindersapp
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -10,6 +9,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 import kotlinx.android.synthetic.main.activity_main.*
+
+val ADD_REMINDER_REQUEST_CODE = 100;
 
 class MainActivity : AppCompatActivity() {
     var reminders = arrayListOf<Reminder>()
@@ -40,9 +41,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun startAddActivity() {
         val intent = Intent(this, addActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, ADD_REMINDER_REQUEST_CODE)
     }
-
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
