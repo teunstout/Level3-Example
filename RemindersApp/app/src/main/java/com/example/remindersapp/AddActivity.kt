@@ -18,15 +18,18 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // back button
 
         floatingActionButton.setOnClickListener { onSaveClick() }
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    /**
+     * Give the result back to the intent from main screen
+     */
     private fun onSaveClick() {
         if (etAddReminder.text.toString().isNotBlank()) {
             val reminder = Reminder(etAddReminder.text.toString())
+            // intent to give back the information and finish this intent
             val resultIntent = Intent()
             resultIntent.putExtra(EXTRA_REMINDER, reminder)
             setResult(Activity.RESULT_OK, resultIntent)
