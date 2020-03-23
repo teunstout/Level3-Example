@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Reminder(val name: String) : Parcelable {}
+data class Reminder(val name: String) : Parcelable

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.reminder_template.view.*
 
-class ReminderAdapter(val standardTasks: ArrayList<Reminder>) : RecyclerView.Adapter<ReminderAdapter.ViewHolder>() {
+class ReminderAdapter(private val standardTasks: ArrayList<Reminder>) : RecyclerView.Adapter<ReminderAdapter.ViewHolder>() {
 
     inner class ViewHolder(textview: View) : RecyclerView.ViewHolder(textview) {
         fun bind(reminder: Reminder) {
@@ -14,7 +14,7 @@ class ReminderAdapter(val standardTasks: ArrayList<Reminder>) : RecyclerView.Ada
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReminderAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.reminder_template, parent, false)
         )
