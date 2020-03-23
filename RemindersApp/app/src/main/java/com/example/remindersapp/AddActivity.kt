@@ -19,12 +19,9 @@ class AddActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add)
         setSupportActionBar(toolbar)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        initViews()
-    }
+        floatingActionButton.setOnClickListener { onSaveClick() }
 
-    private fun initViews() {
-        fab.setOnClickListener { onSaveClick() }
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun onSaveClick() {
